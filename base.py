@@ -66,6 +66,7 @@ def create_champion_table(cursor):
             champion_points INT
         )
     ''')
+     
 
 def get_summoner_data(summoner_name, region):
     summoner = cass.get_summoner(name=summoner_name, region=region)
