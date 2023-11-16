@@ -4,6 +4,12 @@ from mysql.connector import Error
 import time
 import pandas as pd 
 
+# Created by: Travis Huynh 11/15/2023
+
+# Python Program that utlizes Panda Library, Cassiopeia Library, Riot API, MySQL 
+# Program that takes in Riot Information regarding League of Legends Data. 
+# ** IN PROGRESS ** 
+
 def getAPI_key(): 
     f = open("src/apikey.txt", "r")
     return f.read()
@@ -50,26 +56,6 @@ def fetch_data_from_database():
     except mysql.connector.Error as error:
         print("Error connecting to MySQL:", error)
         return None
-    
-def truncate_table():
-    try:
-        connection = mysql.connector.connect(
-            host="TravisPC",
-            user="DuhBoss32",
-            password="9379544trav",
-            database="testing"
-        )
-        print("MySQL Database Connected!")
-
-        cursor = connection.cursor()
-        cursor.execute("TRUNCATE TABLE Mastery7Champions")
-        print("Table 'Mastery7Champions' truncated.")
-
-        cursor.close()
-        connection.close()
-
-    except mysql.connector.Error as error:
-        print("Error connecting to MySQL:", error)    
 
 def create_champion_table(cursor):
     cursor.execute('''
@@ -86,14 +72,13 @@ def get_summoner_data(summoner_name, region):
     print("{name} is a level {level} summoner on the {region} server.".format(name=summoner.name,
                                                                                   level=summoner.level,
                                                                                   region=summoner.region))
-    good_with = summoner.champion_masteries
+    champs = summoner.champion_masteries
 
     connection = connect_to_database()
     cursor = connection.cursor()
     create_champion_table(cursor)
 
-    for champion_mastery in good_with:
-        champion = champion_mastery.champion
+    for champion_mastery in champs:
         champion = champion_mastery.champion
         cursor.execute('''
             INSERT INTO Mastery7Champions (summoner_name, champion_name, champion_id, champion_points)
@@ -111,7 +96,6 @@ if __name__ == "__main__":
     summoner_name = "DuhBoss32"  
     region = "NA"  
 
-    truncate_table()
     get_summoner_data(summoner_name, region)
     df = fetch_data_from_database()
     if df is not None:
