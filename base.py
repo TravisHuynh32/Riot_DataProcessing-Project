@@ -2,6 +2,7 @@ import cassiopeia as cass
 import mysql.connector 
 from mysql.connector import Error
 import time
+import json
 import pandas as pd 
 
 # Created by: Travis Huynh 11/15/2023
@@ -19,26 +20,35 @@ cass.set_riot_api_key(getAPI_key())
 def connect_to_database():
     connection = None
     try: 
-        connection = mysql.connector.connect(
-            host="TravisPC",
-            user="DuhBoss32",
-            password="9379544trav",
-            database="testing"
-        )
-        print("MySQL Database Connected!")
+        with open("src/config.json", "r") as file:
+            config = json.load(file)
+            mysql_config = config['mysql']
+            connection = mysql.connector.connect(
+                host=mysql_config['host'],
+                user=mysql_config['user'],
+                password=mysql_config['password'],
+                database=mysql_config['database']
+            )
+            print("MySQL Database Connected!")
     except Error as err: 
-        print("Error!: '{err}'")
+        print(f"Error!: {err}")
     return connection
 
 def fetch_data_from_database():
     try:
-        connection = mysql.connector.connect(
-            host="TravisPC",
-            user="DuhBoss32",
-            password="9379544trav",
-            database="testing"
-        )
-        print("MySQL Database Connected!")
+        try: 
+            with open("src/config.json", "r") as file:
+                config = json.load(file)
+                mysql_config = config['mysql']
+                connection = mysql.connector.connect(
+                    host=mysql_config['host'],
+                    user=mysql_config['user'],
+                    password=mysql_config['password'],
+                    database=mysql_config['database']
+                )
+                print("MySQL Database Connected!")
+        except Error as err: 
+            print(f"Error!: {err}")
 
         # Fetching data from the table
         cursor = connection.cursor()
