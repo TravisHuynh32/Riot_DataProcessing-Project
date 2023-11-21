@@ -16,9 +16,9 @@ The League of Legends Data Processing Program is a Python application designed t
 
 ### File Structure
 
-- `src/apikey.txt`: Contains the Riot API key needed for accessing the Riot API.
-- `src/config.json`: JSON file storing MySQL connection details (`host`, `user`, `password`, `database`).
-- `base.py`: Python script serving as the main program file.
+- `private/apikey.txt`: Contains the Riot API key needed for accessing the Riot API.
+- `private/config.json`: JSON file storing MySQL connection details (`host`, `user`, `password`, `database`).
+- `src/base.py`: Python script serving as the main program file.
 
 ### Program Functionality
 
