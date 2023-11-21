@@ -1,5 +1,7 @@
 # League of Legends Data Processing Program
 
+![League of Legends Image](images/gragas.jpg)
+
 ## Overview
 
 The League of Legends Data Processing Program is a Python application designed to gather, process, and store player statistics and game-related information from Riot's API into a MySQL database. The program utilizes various libraries such as Cassiopeia, MySQL Connector, Pandas, and interacts with Riot's API to retrieve League of Legends data.
