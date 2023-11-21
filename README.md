@@ -1,4 +1,5 @@
-# League of Legends Data Processing Program using Riot's API
+# League of Legends Data Processing Program
+Using Riot's api 
 
 ![League of Legends Image](images/gragas.jpg)
 
