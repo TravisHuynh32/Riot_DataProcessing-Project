@@ -42,3 +42,7 @@ Once executed, the program displays the fetched data in the form of a Pandas Dat
 ### Example Command:
 ```bash
 python base.py
+
+Credits
+Author: Travis Huynh
+Creation Date: November 15, 2023
