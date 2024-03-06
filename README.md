@@ -35,8 +35,6 @@ The League of Legends Data Processing Program is a Python application designed t
    - Fetches data from the `Mastery7Champions` table in the MySQL database.
    - Transforms the fetched data into a Pandas DataFrame.
 
-4. **IN PROGRESS** 
-
 ## Usage
 
 The main entry point of the program is the `base.py` file.
