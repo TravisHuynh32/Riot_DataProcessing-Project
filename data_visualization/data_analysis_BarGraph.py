@@ -8,16 +8,19 @@ import matplotlib.pyplot as plt
 
 def connect_to_database():
     connection = None
-    try:
-        connection = mysql.connector.connect(
-            host="TravisPC",
-            user="DuhBoss32",
-            password="9379544trav",
-            database="testing"
-        )
-        print("MySQL Database Connected!")
-    except mysql.connector.Error as err:
-        print("Error!: '{err}'")
+    try: 
+        with open("private/config.json", "r") as file:
+            config = json.load(file)
+            mysql_config = config['mysql']
+            connection = mysql.connector.connect(
+                host=mysql_config['host'],
+                user=mysql_config['user'],
+                password=mysql_config['password'],
+                database=mysql_config['database']
+            )
+            print("MySQL Database Connected!")
+    except Error as err: 
+        print(f"Error!: {err}")
     return connection
 
 def fetch_champion_data():
