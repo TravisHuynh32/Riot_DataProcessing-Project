@@ -4,13 +4,17 @@ import matplotlib.pyplot as plt
 
 def fetch_top_20_champion_data():
     try:
-        connection = mysql.connector.connect(
-            host="TravisPC",
-            user="DuhBoss32",
-            password="9379544trav",
-            database="testing"
-        )
-        print("MySQL Database Connected!")
+        connection = None
+        with open("private/config.json", "r") as file:
+            config = json.load(file)
+            mysql_config = config['mysql']
+            connection = mysql.connector.connect(
+                host=mysql_config['host'],
+                user=mysql_config['user'],
+                password=mysql_config['password'],
+                database=mysql_config['database']
+            )
+            print("MySQL Database Connected!")
 
         cursor = connection.cursor()
         cursor.execute("SELECT * FROM Mastery7Champions ORDER BY champion_points DESC LIMIT 20")
